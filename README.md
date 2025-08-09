@@ -62,4 +62,4 @@ cd raiqa_health_assignment
 
 -->Dynamically generated from an array.
 
--->Clean, responsive layout.
+--> Clean, responsive layout.
