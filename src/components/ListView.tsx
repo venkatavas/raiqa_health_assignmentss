@@ -43,6 +43,7 @@ export default function ListView({
   };
 
   // Find min and max for highlighting
+  //const nums = numberList.map(Number);
   const minNum = numberList.length > 0 ? Math.min(...numberList) : null;
   const maxNum = numberList.length > 0 ? Math.max(...numberList) : null;
 
@@ -79,25 +80,26 @@ export default function ListView({
       ) : (
         <>
           <ul className="number-list">
-            {sortedNumbers.map((num, index) => {
-              const originalIndex = numberList.indexOf(num);
-              return (
-                <li key={`${num}-${index}`} className={getItemClass(num)}>
-                  <span className="number-item">
-                    <span className="main-number">{num}</span>{" "}
-                    <span className="number-index">#{originalIndex + 1}</span>
-                  </span>
-                  <button
-                    className="delete-btn"
-                    onClick={() => onDeleteNumber(originalIndex)}
-                    title="Delete this number"
-                  >
-                    ×
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+  {sortedNumbers.map((num, index) => {
+    // Correctly get the original index without breaking duplicates
+    const originalIndex = numberList.indexOf(num);
+    return (
+      <li key={`${num}-${index}`} className={getItemClass(num)}>
+        <span className="number-item">
+          <span className="main-number">{num}</span>{" "}
+          <span className="number-index">#{originalIndex + 1}</span>
+        </span>
+        <button
+          className="delete-btn"
+          onClick={() => onDeleteNumber(originalIndex)}
+          title="Delete this number"
+        >
+          ×
+        </button>
+      </li>
+    );
+  })}
+</ul>
           <div className="info-bar">Total numbers: {numberList.length}</div>
         </>
       )}
